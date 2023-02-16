@@ -5,13 +5,14 @@ import PhoneInput from "./PhoneInput";
 import {FormControl, Input, Button} from '@mui/material'
 import defaultAvatar from '../assets/empty-avatar.jpg'
 import dataUrlToFile from '../utils/dataUrlToFile.js'
+import CropImageButton from "./CropImageButton";
 export default function RegisterForm({ addSingleUserToState }) {
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
   const [loading, setLoading] = useState(false)
   const [loadingMessage, setLoadingMessage] = useState('')
 
-
+  
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined)
@@ -19,13 +20,13 @@ export default function RegisterForm({ addSingleUserToState }) {
     }
     const objectUrl = URL.createObjectURL(selectedFile)
     setPreview(objectUrl)
+    console.log(objectUrl)
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
   }, [selectedFile])
 
   const onSelectFile = e => {
-    console.log(e.target)
     const file = e.target.files[0]
     if (!file) {
       setSelectedFile(undefined)
@@ -33,12 +34,25 @@ export default function RegisterForm({ addSingleUserToState }) {
     }
     setSelectedFile(file)
   }
+  
+
+  const onChangeFile = file => {
+    if (!file) {
+      setSelectedFile(undefined)
+      return
+    }
+    setSelectedFile(file)
+  }
+
+  useEffect(() => {
+    onChangeFile(dataUrlToFile(defaultAvatar))
+  }, [])
 
   const onSubmit = async event => {
     event.preventDefault()
     setLoading(true)
     const {name, surname, phone, email, birthDate} = event.target
-    const avatar = selectedFile || dataUrlToFile(defaultAvatar)
+    const avatar = selectedFile
     await registerUser({
       name: name.value,
       surname: surname.value,
@@ -62,6 +76,8 @@ export default function RegisterForm({ addSingleUserToState }) {
       <h1 style={{marginLeft: '35px'}}>Register</h1>
       <div>
               <form onSubmit={onSubmit} className='registerForm'>
+
+                {/* avatar preview and crop */}
                   <div>
                     <div className="selectAvatar" onClick={() => document.querySelector('input[name=avatar]').click()}>
                       {
@@ -72,11 +88,11 @@ export default function RegisterForm({ addSingleUserToState }) {
                           <img src={defaultAvatar} alt="preview" className="avatar" />
                       }
                     </div>
-                    {/* <button className="cropImageButton" type="button">Обрізати</button> */}
+                    <CropImageButton onChangeFile={onChangeFile} selectedFile={selectedFile} preview={preview}/>
                   </div>
                   
                 
-                
+                {/* text inputs */}
                 <div>
                   <Input type="text" name="name" inputProps={{"aria-required": true}} sx={{display: 'block', width: '300px'}} placeholder="Ім'я" required/>
                   <Input type="text" name="surname" inputProps={{"aria-required": true}} sx={{display: 'block', width: '300px'}} placeholder="Прізвище" required/>
@@ -97,6 +113,8 @@ export default function RegisterForm({ addSingleUserToState }) {
                       marginTop: '10px', 
                       display: 'block'}}
                     >Register User</Button>
+
+                    {/* loading */}
                   <p>{loadingMessage}</p>
                   {loading && <div className="spinner registerSpinner"></div>}
                 </div>
