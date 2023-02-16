@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import RegisterForm from './components/RegisterForm';
-import UsersList from './components/UsersList';
+import RegisterForm from './pages/RegisterForm';
+import UsersList from './pages/UsersList';
 import { getAllUsers } from './firebase/firebase';
 import logo from './logo.svg';
 import NotFound from './pages/NotFound';

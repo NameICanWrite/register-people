@@ -1,5 +1,6 @@
-import User from "./User";
+import User from "../components/User";
 
+//list registered users
 export default function UsersList({users, loading}) {
   return !loading 
     ? 

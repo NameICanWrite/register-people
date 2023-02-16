@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react"
 import { FileUploader } from "react-drag-drop-files";
 import { registerUser, uploadAvatarToFirebase } from "../firebase/firebase";
-import PhoneInput from "./PhoneInput";
+import PhoneInput from "../components/PhoneInput";
 import {FormControl, Input, Button} from '@mui/material'
 import defaultAvatar from '../assets/empty-avatar.jpg'
 import dataUrlToFile from '../utils/dataUrlToFile.js'
-import CropImageButton from "./CropImageButton";
+import CropImageButton from "../components/CropImageButton";
+
+
+  // register add avatar and crop here
 export default function RegisterForm({ addSingleUserToState }) {
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
   const [loading, setLoading] = useState(false)
   const [loadingMessage, setLoadingMessage] = useState('')
 
-  
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined)
