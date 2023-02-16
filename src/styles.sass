@@ -1,0 +1,143 @@
+body
+  margin: 0
+
+.x_large
+  font-size: 4rem
+  line-height: 1.2
+  margin-bottom: 1rem
+
+.large
+  font-size: 3rem
+  line-height: 1.2
+  margin-bottom: 1rem
+
+.registerForm
+  display: flex,
+  width: 500px,
+  flex-direction: row,
+  justify-content: space-between,
+  margin-left: 5%
+  position: relative
+
+.spinner
+  display: inline-block
+  width: 50px
+  height: 50px
+  border: 3px solid rgba(195, 195, 195, 0.6)
+  border-radius: 50%
+  border-top-color: #636767
+  animation: spin 1s ease-in-out infinite
+  -webkit-animation: spin 1s ease-in-out infinite
+
+  &.registerSpinner
+    width: 30px
+    height: 30px
+    position: absolute
+    right: 50px
+    bottom: 17px
+
+@keyframes spin
+  to
+    -webkit-transform: rotate(360deg)
+
+@-webkit-keyframes spin
+  to
+  -webkit-transform: rotate(360deg)
+
+.selectAvatar
+  border: green 3px solid
+  height: 200px
+  width: 150px
+  border-radius: 10px
+  padding: 5px
+  cursor: pointer
+
+.avatar
+  display: block
+  height: 100%
+  width: 100%
+  object-fit: cover
+  border-radius: 10px
+
+.avatarWrapper
+  height: 200px
+  width: 150px
+  margin: 10px
+  border-radius: 10px
+  border: 3px black solid
+  background-color: black
+
+.userContainer
+  display: flex
+  max-width: 600px
+  justify-content: space-around
+  border: 2px black solid
+  border-right: none
+  border-left: none
+  border-bottom: none
+  margin: 10px 5%
+
+.navbar
+  position: fixed,
+  background-color: gray,
+  width: 100%,
+  top: 0,
+  padding: 15px
+
+  a
+    text-decoration: none
+    color: white
+    margin-left: 10%
+    font-size: 20px
+
+.spinnerContainer
+  height: 60vh
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+// input[type=date]
+//   ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+//   ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+//   ::-webkit-datetime-edit-day-field:not([aria-valuenow])
+//     color: transparent
+
+// .custom-file-input
+//   &::-webkit-file-upload-button, &::webkit-file-up
+//     visibility: hidden
+
+// .custom-file-input
+//   &:before
+//     content: 'Select some files'
+//     display: inline-block
+//     background: linear-gradient(top, #f9f9f9, #e3e3e3)
+//     border: 1px solid #999
+//     border-radius: 3px
+//     padding: 5px 8px
+//     outline: none
+//     white-space: nowrap
+//     -webkit-user-select: none
+//     cursor: pointer
+//     text-shadow: 1px 1px #fff
+//     font-weight: 700
+//     font-size: 10pt
+
+// .custom-file-input:hover
+//   &:before
+//     border-color: black
+
+// .custom-file-input
+//   &:active
+//     &:before
+//       background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9)
+.cropImageButton
+  display: block
+  padding: 5px
+  margin: 5px 0
+  width: 100%
+  color: white
+  background-color: green
+  border-radius: 5px
+  cursor: pointer
+  border: none
