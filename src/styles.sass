@@ -70,12 +70,14 @@ body
 .userContainer
   display: flex
   max-width: 600px
-  justify-content: space-around
   border: 2px black solid
   border-right: none
   border-left: none
   border-bottom: none
   margin: 10px 5%
+
+  div
+    margin-left: 10%
 
 .navbar
   position: fixed,
@@ -146,3 +148,9 @@ body
   position: absolute
   border: 1px green dashed
   margin: 20px
+
+@media ( max-width: 600px )
+  .userContainer
+    flex-direction: column-reverse
+    width: fit-content
+  

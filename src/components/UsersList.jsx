@@ -8,7 +8,7 @@ export default function UsersList({users, loading}) {
         <h1 style={{marginLeft: '35px'}}>Users</h1>
         <div className="usersListContainer">
           {
-            users.map((user, index) => <User user={user} key={index}/>)
+            users.slice(0).reverse().map((user, index) => <User user={user} key={index}/>)
           }
         </div>
       </div>
