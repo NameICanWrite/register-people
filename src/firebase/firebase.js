@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, doc, getDocs, getFirestore, setDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, getFirestore} from "firebase/firestore";
 import {ref, uploadBytes, getStorage, getDownloadURL} from "firebase/storage"
 import {v4} from 'uuid'
 
@@ -31,22 +31,26 @@ export async function uploadAvatarToFirebase(avatar) {
 export async function registerUser({name, surname, email, phone, birthDate, avatar}) {
   console.log('registering...')
   const url = await uploadAvatarToFirebase(avatar)
+  const timestamp =  Date.now()
   await addDoc(collection(db, "users"), {
     name,
     surname,
     email,
     phone,
     birthDate,
-    avatar: url
+    avatar: url,
+    timestamp
   })
   console.log('new user added')
-  return {name, surname, email, phone, birthDate, avatar: url}
+  return {name, surname, email, phone, birthDate, avatar: url, timestamp}
 }
 
 export async function getAllUsers() {
   let querySnapshot = await getDocs(collection(db, 'users'))
   const users = []
+  
   querySnapshot.forEach(user => users.push(user.data()))
+
   return users
 }
 

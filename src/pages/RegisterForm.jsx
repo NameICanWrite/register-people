@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { FileUploader } from "react-drag-drop-files";
-import { registerUser, uploadAvatarToFirebase } from "../firebase/firebase";
+import { registerUser } from "../firebase/firebase";
 import PhoneInput from "../components/PhoneInput";
-import {FormControl, Input, Button} from '@mui/material'
+import {Input, Button} from '@mui/material'
 import defaultAvatar from '../assets/empty-avatar.jpg'
 import dataUrlToFile from '../utils/dataUrlToFile.js'
 import CropImageButton from "../components/CropImageButton";

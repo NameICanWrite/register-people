@@ -2,7 +2,6 @@ import { useState } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import cropImageNow from '../utils/cropImageNow';
-import dataURLtoFile from '../utils/dataUrlToFile';
   
 export default function CropImageButton({onChangeFile, selectedFile, preview}) {
   const [crop, setCrop] = useState(null);
